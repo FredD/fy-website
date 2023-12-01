@@ -1,0 +1,64 @@
+---
+// SVG Icons for the site.
+import SvgIcons from "../components/SvgIcons.astro";
+//Masthead which uses the svg icons.
+import Masthead from "../components/MastHead.astro";
+// Main Footer
+import Footer from "../components/Footer.astro";
+
+---
+
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <!-- Basic Page Needs -->
+  <title>Home – Frederick Yocum</title>
+  <meta name="description" content="This is Frederick Yocum’s home page." />
+  <meta name="author" content="Frederick Yocum" />
+
+  <!-- Mobile Specific Meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Favicon -->
+  <link
+   rel="icon"
+   type="image/png"
+   href="https://frederickyocum.com/user/themes/frederick/images/favicon.ico"
+  />
+
+  <!-- Sets a canonical URL for the page to the full URL of the page to aid search engines. -->
+  <link rel="canonical" href="https://frederickyocum.com/" />
+
+  <!-- CSS -->
+  <link
+   href="Home%20%E2%80%93%20Frederick%20Yocum_files/normalize.css"
+   type="text/css"
+   rel="stylesheet"
+  />
+  <link
+   href="Home%20%E2%80%93%20Frederick%20Yocum_files/fyocum.css"
+   type="text/css"
+   rel="stylesheet"
+  />
+
+  <!-- JavaScript -->
+ </head>
+
+ <body class="site home">
+<SvgIcons />
+  <!-- Primary Page Header –––––––––––– -->
+  <!-- Skip Link for tabbed page navigation -->
+  <div id="skiplink"><a href="#maincontent">Skip to main content</a></div>
+  
+<Masthead />
+  <!-- Main content of the page goes here page ––––––––––––––––– -->
+  <main>
+    <slot />
+   <!-- End of the primary page content -->
+  </main>
+<Footer />
+  <!-- End Document   -->
+ </body>
+</html>
+
