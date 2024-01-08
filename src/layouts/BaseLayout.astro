@@ -6,6 +6,12 @@ import Masthead from "../components/MastHead.astro";
 // Main Footer
 import Footer from "../components/Footer.astro";
 
+const { title } = Astro.props;
+// console.log(Astro.props);
+// console.log(title);
+// Deconstruct the front matter
+// const {title, summary, page_class} = frontmatter;
+
 ---
 
 <!doctype html>
@@ -14,7 +20,7 @@ import Footer from "../components/Footer.astro";
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <!-- Basic Page Needs -->
   <title>Home – Frederick Yocum</title>
-  <meta name="description" content="This is Frederick Yocum’s home page." />
+  <meta name="description" content="" />
   <meta name="author" content="Frederick Yocum" />
 
   <!-- Mobile Specific Meta -->
@@ -32,12 +38,12 @@ import Footer from "../components/Footer.astro";
 
   <!-- CSS -->
   <link
-   href="Home%20%E2%80%93%20Frederick%20Yocum_files/normalize.css"
+   href="/global.css"
    type="text/css"
    rel="stylesheet"
   />
   <link
-   href="Home%20%E2%80%93%20Frederick%20Yocum_files/fyocum.css"
+   href="/f_yocum.css"
    type="text/css"
    rel="stylesheet"
   />

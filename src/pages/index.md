@@ -2,8 +2,7 @@
 layout: ../layouts/Article.astro
 title: "Home"
 summary: "This is Frederick Yocum’s home page."
-class: "homepage"
-
+page_class: "homepage"
 ---
 
 # Welcome

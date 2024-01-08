@@ -1,0 +1,224 @@
+/**
+* Frederick Yocum Global
+* A cluster of declarations which resets some browser defaults and
+* contains universal declaration useful for any website.
+* October 26, 2023
+**/
+
+/* With border-box the (literal) width you set is the width you get, without
+ * having to perform mental math and manage the complexity that comes from
+* widths that come from multiple properties. */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin from all elements. */
+* {
+  margin: 0;
+}
+
+/*
+Setting html and body to have height: 100%, we make it easier for us to use percentage-based heights down the line.
+*/
+html, body {
+  height: 100%;
+}
+
+/* Form Tweaks */
+
+/* Remove built-in form typography styles and rely on the design */
+input, button, textarea, select {
+  font: inherit;
+}
+
+/* Set shorter line heights on headings and interactive elements */
+button, input, label {
+  line-height: 1;
+}
+
+/* Make sure textareas without a rows attribute are not tiny */
+textarea:not([rows]) {
+  min-height: 7em;
+}
+
+/* Typographic tweaks
+Increase the line-height for accessibility
+ Improve text rendering
+*/
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Set shorter line heights on headings */
+h1, h2, h3, h4 {
+  line-height: 1;
+}
+
+/* Balance text wrapping on headings */
+h1, h2,
+h3, h4 {
+  text-wrap: balance;
+}
+
+/* Hyphenation Settings */
+
+p, td, {
+  
+/*Currently Safari and IE/Edge both require prefixes */
+
+  -webkit-hyphens: auto;
+  -webkit-hyphenate-limit-before: 3;
+  -webkit-hyphenate-limit-after: 3;
+  -webkit-hyphenate-limit-chars: 6 3 3;
+  -webkit-hyphenate-limit-lines: 2;
+  -webkit-hyphenate-limit-last: always;
+  -webkit-hyphenate-limit-zone: 8%;
+
+  -moz-hyphens: auto;
+  -moz-hyphenate-limit-chars: 6 3 3;
+  -moz-hyphenate-limit-lines: 2;
+  -moz-hyphenate-limit-last: always;
+  -moz-hyphenate-limit-zone: 8%;
+
+  -ms-hyphens: auto;
+  -ms-hyphenate-limit-chars: 6 3 3;
+  -ms-hyphenate-limit-lines: 2;
+  -ms-hyphenate-limit-last: always;
+  -ms-hyphenate-limit-zone: 8%;
+
+  hyphens: auto;
+  hyphenate-limit-chars: 6 3 3;
+  hyphenate-limit-lines: 2;
+  hyphenate-limit-last: always;
+  hyphenate-limit-zone: 8%;
+  }
+
+/* Widows and orphans */
+p, blockquote {
+  widows: 2;
+  orphans: 3;
+}
+
+/* Set consistent font size. */
+small {
+  font-size: 80%;
+}
+
+/* Set `sub` and `sup`. */
+sub, sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+/**
+ * Ensures on all content text elements will wrap
+ * to the next line. No hyphens.
+ * Answer question, what happens to form elements like input and
+ * textarea?
+ **/
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/**
+ * Use hyphens on select text elements.
+ * Only works if the lang attribute is set on the <html> tag (and
+ * it mainly works in English, and not in all cases.Some browsers
+ * have added hyphen support for other languages.
+ **/
+p, li, blockquote { hyphens: auto;}
+
+/*
+Treat media as a block element by  defaults
+*/
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/*
+Create a new stacking context
+*/
+#root {
+  isolation: isolate;
+}
+
+/**
+ * Miscellaneous Utilities
+ */
+
+/* Used to clear floats especially on Main positional elements */
+
+.clear {
+  clear: both;
+}
+
+.nobreak {
+  white-space: nowrap;
+}
+
+/* Added to any objects required for screen readers but not sighted users */
+
+.visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
+/* There will be a primary skiplimk  */
+
+#skiplink a {
+  position:absolute;
+  left:-1000px;
+  top:auto;
+  width:1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+#skiplink a:focus,
+#skiplink a:hover,
+#skiplink a:active {
+  position:static;
+  width: auto;
+  height: auto;
+  z-index: 1000000;
+
+/* end group Miscellaneous Utilities */
+
+/**
+ * Utility classes to help debug css.
+ */
+
+/* A border which will not take up any space in the layout. */
+
+.dev-outline {
+  outline: solid 2px red;
+}
+
+/* Transparent to help identify overlap. */
+
+.dev-bg {
+  background-color: hsla(50deg 33% 50% / 45%);
+  color: inherit;
+}

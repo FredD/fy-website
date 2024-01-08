@@ -1,0 +1,525 @@
+/*
+* Frederick Yocum
+* frederickyocum.com
+* It works in conjunction with my global.css.
+* Free to use under the MIT license.
+* http://www.opensource.org/licenses/mit-license.php
+* 00/00/2020
+*/
+
+/* ---------- Root -----------
+ * Set up the site wide definitions
+**/
+:root {
+  /*  Cool Colour Slate */
+  --cool-hue: 229deg;
+  --colour-cool-100: hsl(var(--cool-hue) 0% 100%);
+  --colour-cool-300: hsl(var(--cool-hue) 14% 84%);
+  --colour-cool-500: hsl(var(--cool-hue) 21% 40%);
+  --colour-cool-700: hsl(var(--cool-hue) 80% 10%);
+
+  /* Warm Colour Umber */
+  --warm-hue: 7deg;
+  --colour-warm-100: hsl(var(--warm-hue) 11% 98%);
+  --colour-warm-300: hsl(var(--warm-hue) 14% 84%);
+  --colour-warm-400: hsl(var(--warm-hue) 27% 52%);
+  --colour-warm-500: hsl(var(--warm-hue) 29% 40%);
+  --colour-warm-700: hsl(var(--warm-hue) 75% 25%);
+
+  /* Accent color */
+  --accent-hue: 333deg;
+  --colour-accent-500: hsl(var(--accent-hue) 73% 39%);
+  --colour-accent-700: hsl(var(--accent-hue) 100% 21%);
+
+  /* Base */
+
+  --white: hsl(0deg 0% 100%);
+  --black: hsl(0deg 0% 0%);
+
+  /** Units **/
+
+  --unit-one: 8px;
+  --unit-two: 13px;
+  --unit-three: 21px;
+
+  /** Drop shadow definitions */
+
+  /* Masthead highlight */
+
+  --highlight-shadow: filter: drop-shadow(0 0 20px var(--colour-cool-100));
+  
+  
+}
+
+/* Typeface
+-------------------------------------------------------------------------
+*/
+
+/*
+ * Web Fonts from fontspring.com
+ * * The fonts included are copyrighted by the vendor listed below.
+ * Cyan Regular Vendor:      Wilton Foundry
+ * License URL: http://www.fontspring.com/fflicense/wilton-foundry
+ */
+
+@font-face {
+  font-family: cyanregular;
+  src:
+    url("/cyanregular-webfont.woff2") format("woff2"),
+    url("/cyanregular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Atkinson Hyperlegible";
+  src: url("/atkinson-hyperlegible-regular-102.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Atkinson Hyperlegible";
+  src: url("/atkinson-hyperlegible-italic-102..woff2") format("woff2");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Atkinson Hyperlegible";
+  src: url("/atkinson-hyperlegible-bolditalic-102..woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Atkinson Hyperlegible";
+  src: url("/atkinson-hyperlegible-bold-102.woff2") format("woff2");
+  font-weight: bold;
+  font-style: italic;
+
+  /* Set up font use */
+
+  --font-titling: cyanregular, sans-serif;
+  --font-headings: "Atkinson Hyperlegible", serif;
+}
+
+/* Set the default typeface */
+
+body {
+  font-family: "Iowan Old Style", "Palatino Linotype", "URW Palladio L", "P052", serif;
+}
+
+/* ---------- Layout-----------
+ * Styles attached to core layout elements.
+ **/
+body {
+  background-color: var(--colour-cool-300);
+  color: inherit;
+  display:grid;
+  /*  Bounded by the smallest screen size and the
+  largest line length */
+  grid-template-columns: auto clamp(240px, 80vw, 27rem) auto;
+  grid-template-rows: min-content auto min-content;
+  grid-template-areas: 
+  "header header header"
+  "leftbar main rightbar"
+  "leftbar footer rightbar";
+  
+  
+}
+
+header {
+  text-align: center;
+  padding-top: 1rem;
+  position: relative;
+  grid-area: header;
+  align-self: start;
+}
+
+main {
+  background-color: var(--colour-cool-100);
+  color: inherit;
+  border: var(--white) solid  2px;
+  border-radius: 15px 15px 0 0;
+  border-bottom: unset;
+  grid-area: main;
+  height: 100%;
+  padding: 1rem;
+}
+
+footer {
+  background-color: var(--colour-cool-100);
+  border-right: var(--white) solid  2px;
+  border-left: var(--white) solid  2px;
+  padding: 2rem;
+  grid-area: footer;
+}
+
+section {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+article {
+  padding: 1rem;
+  position: relative;
+}
+
+aside.sidebar {
+  padding: 1rem;
+}
+
+/* ---------- Base Elements -----------
+ * Styles which are attached to base HTML elements. Hypherlinks, lists
+ * in nav, headings, etc.
+ **/
+
+p {
+  line-height: 1rem;
+  margin: 0;
+}
+
+p + p {
+  margin-top: 1em;
+}
+
+h1 {
+  color: var(--colour-cool-700);
+  background-color: transparent;
+  font-family: cyanregular, Palatino, "Palatino Linotype", Georgia, Times, "Times New Roman", sans-serif;
+  font-size: clamp(1.25rem, 4vw, 3.375rem);
+  letter-spacing: -0.025em;
+  font-weight: normal;
+  line-height: 1rem;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+h1 + p::first-line {
+  text-transform: uppercase;
+}
+
+h2 {
+  color: var(--colour-cool-700);
+  background-color: transparent;
+  font-family: "Atkinson Hyperlegible", system-ui, sans-serif;
+  font-weight: bold;
+  font-size: clamp(1.1rem, 4vw, 2rem);
+  line-height: 1em;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.083em;
+}
+
+h3 {
+  color: var(--colour-cool-700);
+  background-color: transparent;
+  font-family: "Atkinson Hyperlegible", system-ui, sans-serif;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  font-weight: bold;
+  line-height: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.083em;
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+h4 {
+  color: var(--colour-cool-700);
+  background-color: transparent;
+  font-family: "Atkinson Hyperlegible", system-ui, sans-serif;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: bold;
+  line-height: 1rem;
+  letter-spacing: 0.083em;
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+h5 {
+  color: var(--colour-cool-700);
+  background-color: transparent;
+  font-family: "Atkinson Hyperlegible", system-ui, sans-serif;
+  font-size: clamp(0.67rem, 1vw, 1rem);
+  font-weight: normal;
+  line-height: 1rem;
+  margin-bottom: 0;
+  margin-top: 1rem;
+  text-transform: uppercase;
+}
+
+h6 {
+  color: var(--colour-cool-700);
+  background-color: transparent;
+  font-family: "Atkinson Hyperlegible", system-ui, sans-serif;
+  font-size: clamp(0.67rem, 1vw, 1rem);
+  font-weight: bold;
+  line-height: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 0;
+  text-transform: none;
+}
+
+/* Lists */
+ol,
+ul,
+dl {
+  margin-bottom: 1rem;
+}
+
+li {
+  line-height: 1rem;
+}
+
+/* Blockquotes */
+
+blockquote {
+  font-size: 0.67rem;
+  font-style: italic;
+  line-height: 1rem;
+  margin: 0.5rem 1rem 0.5rem 0.5rem;
+}
+
+blockquote + p {
+  margin-top: 1em;
+}
+
+/* Figure */
+
+figure {
+  margin-bottom: 1rem;
+  margin-right: 0;
+  margin-left: 0;
+  break-inside: avoid;
+}
+
+figcaption {
+  font-family: var(--font-headings);
+  font-size: clamp(0.444rem, 2vh, 0.667rem);
+  font-weight: normal;
+  line-height: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.198em;
+  text-align: right;
+  margin: 0 0.5rem;
+}
+
+legend {
+  color: var(--colour-cool-700);
+  background-color: transparent;
+  font-family: var(--font-headings);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: bold;
+  line-height: 1rem;
+  letter-spacing: 0.083em;
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+caption {
+  color: var(--colour-cool-700);
+  background-color: transparent;
+  font-family: var(--font-headings);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: bold;
+  line-height: 1rem;
+  letter-spacing: 0.083em;
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+thead {
+  /* background-color: var; */
+  color: var(--white);
+  border: none;
+}
+
+a:link,
+a:visited {
+  color: var(--colour-accent-500);
+}
+
+a:hover,
+a:focus {
+  color: var(--white);
+  background: var(--colour-warm-400);
+  /* outline: 4px solid red border-radius:4px; */
+}
+
+/* Forms */
+
+form {
+  background-color: var(--colour-warm-300);
+  color: inherit;
+}
+
+label {
+  color: var(--colour-cool-700);
+  background-color: inherit;
+}
+
+/* ---------- Classes-----------
+ * Set in Design Sections
+ **/
+
+/* Site Wide IDs and classes */
+
+/* SVG logo */
+
+svg#brand-logo {
+  fill: var(--colour-warm-500);
+  filter: var(--highlight-shadow);
+  transition: ease-in-out fill 1s;
+  display: block;
+  height: 4rem;
+  width: auto;
+  margin: 0 auto;
+}
+
+svg#brand-logo:hover {
+  fill: var(--colour-warm-400);
+}
+
+#imprint {
+  width: clamp(300px, 65%, 800px);
+  margin: 0 auto 1rem;
+}
+
+.imprint svg.frederickyocum {
+  fill: var(--colour-warm-700);
+  height: 2rem;
+  width: auto;
+  margin: 0 auto;
+}
+
+/* Main Navigation */
+
+#nav-main {
+  letter-spacing: 0.125rem;
+  font-size: 0.9rem;
+}
+
+#nav-main ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 0.25rem;
+  text-align: center;
+  padding: .5rem 0;
+  margin: 0;
+}
+
+#nav-main li {
+  position: relative;
+  text-transform: uppercase;
+  list-style-type: none;
+  margin: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+#nav-main svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 0 auto;
+}
+
+#nav-main .nav-text {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: bold;
+  font-size: clamp(0.334rem, 2vw, 0.667rem);
+  margin: 0 auto;
+}
+
+#nav-main a {
+  color: transparent;
+  background-color: unset;
+  text-decoration: none;
+  transition: color ease-in;
+  transition-duration: 0.5s;
+}
+
+#nav-main a:hover,
+#nav-main a:focus,
+#nav-main a:active {
+  transition: color ease-in;
+  transition-duration: 0.5s;
+  color: inherit;
+  background-color: transparent;
+}
+
+/* End Main Navigation style rules */
+
+/* Footer */
+
+address {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-links {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: var(--unit-0ne); 
+}
+
+.contact-social svg {
+  fill: var(--colour-warm-500);
+  filter: var(--highlight-shadow);
+}
+
+footer address svg,
+nav#nav-main svg {
+  fill: var(--colour-cool-500);
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.footer-text {
+  color: var(--colour-cool-700);
+  background-color: unset;
+}
+/* End Footer``` */
+
+
+/* Home Page */
+
+.homepage h1 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.homepage p {
+  color: var(--colour-cool-500);
+  font-size: clamp(1rem, 5vw, 1.5rem);
+  line-height: 1.2em;
+  hyphens: none;
+}
+
+/** Art Object **/
+
+.art.object dl {
+  /* background-color:; */
+}
+
+/* Gallery Collection */
+
+.gall-collection main {
+  background-color: var(--colour-warm-300);
+}
+
+/* Navigation Main */
+
+footer address svg,
+nav#nav-main svg {
+  fill: var(--colour-cool-500);
+}

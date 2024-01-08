@@ -1,9 +1,12 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 const { frontmatter } = Astro.props;
+// Display the frontmatter in console.log(frontmatter);
+// Deconstruct the front matter
+const {title, summary, page_class} = frontmatter;
 ---
-<BaseLayout>
-   <article class="{frontmatter.class}">
+<BaseLayout {title} {summary} {page_class}>
+   <article class="{ page_class }">
      <slot />
    </article>
  </BaseLayout>
