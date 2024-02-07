@@ -1,0 +1,39 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const ephemeraEntry = await getCollection('ephemera');
+  return ephemeraEntry.map(entry => ({
+      params: { slug: entry.slug }, props: { entry }, 
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content, headings } = await entry.render();
+console.log("These are the headings: ", headings);
+// Pull in all the entries
+const ephemeraEntries = await getCollection('ephemera');
+
+---
+<BaseLayout title="Ephemera">
+<article class="ephemera">
+  <figure>
+  <Image src={entry.data.image} alt={entry.data.image_alt} />
+  </figure>
+  <Content />
+</article>
+<aside class="ephemera-list">
+  <h3>Further ephemera</h3>
+  <dl>
+       {ephemeraEntries.map((e) => <a href={"/ephemera/" + e.slug}>
+        <dt>{ e.data.title }</dt></a>
+        <dd>{ e.data.synopsis }</dd>
+        <dd>{ e.data.category }</dd>
+        )}
+  </dl>
+</aside>
+
+</BaseLayout>
+

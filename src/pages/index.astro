@@ -1,0 +1,23 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const ephemera = await getCollection("ephemera");
+// console.log("output: ", ephemera);
+---
+<BaseLayout title="Home">
+<article class="homepage">
+    <h1>Welcome</h1>
+<p>This is Frederick Yocum’s personal website. Feel free to peruse my <a href="https://frederickyocum.com/art">artwork</a>, <a href="https://frederickyocum.com/design">designwork</a> or <a href="https://frederickyocum.com/writing">writing</a> explorations. You won’t find anything on pottery or plumbing or any number of other subjects for which I am not proud. </p>
+</article>
+<article>
+<h2>Ephemera</h2>
+        {ephemera.map((e) => <a href={"/ephemera/" + e.slug}><div>
+            <Image src={e.data.image} alt={e.data.image_alt} />
+            <h3>{e.data.title}</h3>
+        <p>{e.data.synopsis}</p></div></a>
+        )}
+</article>
+</BaseLayout>
+

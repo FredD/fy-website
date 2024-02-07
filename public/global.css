@@ -56,14 +56,16 @@ h1, h2, h3, h4 {
 }
 
 /* Balance text wrapping on headings */
-h1, h2,
-h3, h4 {
+h1, h2, h3
+h4, h5, h6 {
   text-wrap: balance;
 }
+/* Prevent orphans. */
+p { text-wrap: pretty;}
 
 /* Hyphenation Settings */
 
-p, td, {
+p, td {
   
 /*Currently Safari and IE/Edge both require prefixes */
 

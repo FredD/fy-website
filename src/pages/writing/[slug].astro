@@ -1,0 +1,39 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import HeroFigure from "../../components/HeroFigure.astro";
+
+export async function getStaticPaths() {
+  const articleEntry = await getCollection('writing');
+  return articleEntry.map(entry => ({
+      params: { slug: entry.slug }, props: { entry }, 
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content, headings } = await entry.render();
+// console.log("These are the headings: ", headings);
+// console.log("This is the entry: ", entry);
+// Pull in all the entries
+const articleEntries = await getCollection('writing');
+
+---
+<BaseLayout title="Writing">
+    <HeroFigure image={ entry.data.header_image } alt={entry.data.header_image_alt }/>
+  <article class="main-content">
+  <Content />
+</article>
+<aside class="sidebar">
+<section class="section_nav">
+<h3>Other Writing</h3>
+  <dl>
+     {articleEntries.map((article) => <a href={ "/writing/" + article.slug }>
+      <dt>{ article.data.title }</dt></a>
+      <dd>{ article.data.summary }</dd>
+      )}
+</dl>
+</section>
+</aside>
+
+</BaseLayout>

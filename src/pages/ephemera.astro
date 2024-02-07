@@ -1,0 +1,23 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const ephemeraEntries = await getCollection("ephemera");
+// console.log(ephemeraEntries);
+---
+<BaseLayout title="Ephemera">
+<article class="ephemera">
+    <h1>Ephemera</h1>
+<p>Notes on the substance of life, things I am viewing, reading, experiencing and how they relate to my life and yours.</p>
+<div class="ephemera-panel">
+        {ephemeraEntries.map((e) => <a href={"/ephemera/" + e.slug}><div>
+            <Image src={e.data.image} alt={e.data.image_alt} />
+            <h2>{e.data.title}</h2>
+            <p>{e.data.synopsis}</p>
+</div></a>
+        )}
+</div>
+</article>
+</BaseLayout>
+

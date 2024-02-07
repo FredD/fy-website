@@ -1,0 +1,26 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const articleEntries = await getCollection("writing");
+console.log(articleEntries);
+---
+<BaseLayout title="Ephemera">
+    <h1>Writing</h1>
+
+    {articleEntries.map((article) => <section class="post_preview">
+        <a href={"./writing/" + article.slug}>
+                <Image src={article.data.thumb_image} alt={article.data.thumb_image_alt} />
+                <h2 class="post_title">{article.data.title}</h2>
+                <p class="post_summary">{article.data.summary}</p>
+    </a></section>
+            )}
+    <!-- <section class="post_preview">
+    <a href="/writing/small-hill">
+                <h2 class="post_title">A small hill on which to die</h2>
+                        <p class="post_summary">It is good to have standards, however small.</p>
+            </a>
+    </section> -->
+</BaseLayout>
+

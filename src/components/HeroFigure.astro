@@ -1,0 +1,22 @@
+---
+//This image which will show up on the top of the main
+//text pages.
+import { Image } from "astro:assets";
+const { image, alt } = Astro.props;
+// console.log("These are the Figure Hero props: ", Astro.props);
+
+---
+  <figure class="blog_hero">
+  <Image src={ image } alt={ alt } />
+  </figure>
+  
+  <style>
+   figure.blog_hero {
+     width: auto;
+     padding: 0 0;
+     margin: -1rem -1rem 0 -1rem;
+   } 
+   figure.blog_hero img {
+     border-radius: 15px 15px 0 0;
+   }  
+  </style>
